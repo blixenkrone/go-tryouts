@@ -5,18 +5,40 @@ import (
 	"fmt"
 )
 
+// Person blabla
 type Person struct {
-	name string
-	age  byte
-	sayHello ()string
+	name     string
+	age      byte
+	lastName string
+	gender   string
+	// sayHello ()
 }
 
 func main() {
-	person1 := Person{name:"Simon", age:26, sayHello: sayHelloFunc("Hello")}
-		fmt.Println(person1)
+	simon := Person{"simon", 26, "blix", "m"}
+	simone := Person{"simone", 27, "schultz", "f"}
+
+	fmt.Println(simon)
+	fmt.Println(simone.getMarried("blix"))
+	fmt.Println(simone)
 }
 
-func sayHelloFunc(s string) string{
+func (p Person) returnPerson() string {
+	return p.name + `is`
+}
+
+func (p *Person) getMarried(lName string) string {
+	if p.gender == "m" {
+		return "its a man!"
+	}
+	p.lastName = lName
+	return "changed" + p.name + " last name to " + lName
+}
+func (p *Person) changePerson() {
+	p.age++
+}
+
+func sayHelloFunc(s string) string {
 	return s
 }
 
@@ -30,8 +52,7 @@ func pointerTest(args *int) int {
 	return *args
 }
 
-func mapTest() {
-	vals := map[string]int{"one": 1, "two": 2, "three": 3}
+func mapTest(vals map[string]int) {
 	for k, v := range vals {
 		fmt.Println(k, v)
 	}
