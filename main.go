@@ -5,12 +5,19 @@ import (
 	"fmt"
 )
 
+type Person struct {
+	name string
+	age  byte
+	sayHello ()string
+}
+
 func main() {
-	a := 123
-	pointerTest(&a)
-	x := 1.5
-	val := square(&x)
-	fmt.Println(val)
+	person1 := Person{name:"Simon", age:26, sayHello: sayHelloFunc("Hello")}
+		fmt.Println(person1)
+}
+
+func sayHelloFunc(s string) string{
+	return s
 }
 
 func square(x *float64) float64 {
